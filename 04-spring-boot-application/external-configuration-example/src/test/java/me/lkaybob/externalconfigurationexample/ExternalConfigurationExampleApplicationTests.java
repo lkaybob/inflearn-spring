@@ -9,7 +9,9 @@ import org.springframework.test.context.TestPropertySource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties") // 이걸 지우면 어떻게 될까?
+//@TestPropertySource(locations = "classpath:test.properties")
+@TestPropertySource // resources 폴더의 properties 파일을 찾게 됨 (클래스 이름.properties)
+// @TestPropertySource 어노테이션이 없으면 application.properties을 따른다고 보면 됨 (물론 우선순위를 따름)
 class ExternalConfigurationExampleApplicationTests {
     @Autowired
     Environment environment;
