@@ -1,5 +1,7 @@
 package me.lkaybob.externalconfigurationexample;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -13,6 +15,8 @@ import java.time.Duration;
 @EnableConfigurationProperties(KaybobProperties.class)
 public class SampleRuner implements ApplicationListener<ApplicationStartedEvent> {
 
+    private Logger logger = LoggerFactory.getLogger(SampleRuner.class);
+
     @Value("${kaybob.name}")
     private String name;
 
@@ -21,10 +25,10 @@ public class SampleRuner implements ApplicationListener<ApplicationStartedEvent>
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
-        System.out.println("=================");
-        System.out.println("Application started " + kaybobProperties.getFullName());
-        System.out.println(kaybobProperties.getAge());
-        System.out.println(kaybobProperties.getSessionTimeout());
-        System.out.println("=================");
+        logger.debug("=================");
+        logger.debug("Application started " + kaybobProperties.getFullName());
+        logger.debug(String.format("%d", kaybobProperties.getAge()));
+        logger.debug(kaybobProperties.getSessionTimeout().toString());
+        logger.debug("=================");
     }
 }
