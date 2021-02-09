@@ -1,2 +1,10 @@
-package me.lkaybob.springtest.sample;public class SampleService {
+package me.lkaybob.springtest.sample;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class SampleService {
+    public String  getName() {
+        return "kaybob";
+    }
 }

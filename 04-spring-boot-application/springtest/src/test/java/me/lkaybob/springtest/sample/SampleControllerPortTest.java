@@ -9,22 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
-//@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@AutoConfigureMockMvc
-public class SampleControllerMockTest {
-    // WebEnvironment.MOCK을 사용해야할 때
-//    @Autowired
-//    MockMvc mockMvc;
-//
-//    @Test
-//    public void helloTest() throws Exception {
-//        mockMvc.perform(get("/hello"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string("hello kaybob"))
-//                .andDo(print());
-//    }
-
+public class SampleControllerPortTest {
     // WebEnvironment.RANDOM_PORT
     @Autowired
     TestRestTemplate testRestTemplate;
@@ -39,18 +25,4 @@ public class SampleControllerMockTest {
         String result = testRestTemplate.getForObject("/hello", String.class);
         assertThat(result).isEqualTo("hello larry");
     }
-
-    // Webflux를 사용해서 테스트 할 때
-//    @Autowired
-//    WebTestClient webTestClient;
-//
-//    @MockBean
-//    SampleService mockSampleService;
-//
-//    @Test
-//    public void helloWebTestClient() {
-//        when(mockSampleService.getName()).thenReturn("larry");
-//
-//        webTestClient.get().uri("/hello").exchange().expectStatus().isOk().expectBody(String.class).isEqualTo("hello larry");
-//    }
 }
