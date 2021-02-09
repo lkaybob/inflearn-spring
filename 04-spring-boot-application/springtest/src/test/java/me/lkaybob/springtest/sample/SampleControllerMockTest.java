@@ -24,17 +24,11 @@ public class SampleControllerMockTest {
     MockMvc mockMvc;
 
     @Test
-    public void helloTest() throws Exception {
+    public void helloTest(CapturedOutput output) throws Exception {
         mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello kaybob"))
                 .andDo(print());
-    }
-
-    // TODO 무시된다...?
-    @Test
-    void testOutput(CapturedOutput output) throws Exception {
-        mockMvc.perform(get("/hello"));
 
         assertThat(output).contains("skip").contains("holoman");
     }
